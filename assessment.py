@@ -201,7 +201,7 @@ def kids_game(names):
     good solutions here will definitely require a dictionary.
     """
 
-    words1 = {}
+    words = {}
     
     words_final = []
 
@@ -209,26 +209,23 @@ def kids_game(names):
     
     y = 0
 
-    for name in names:
-        if name == names[0]:
-            pass
-        else:
-            words1[y] = words1.get(y, name)
-            y += 1
-    
-    x = 0
+    for name in names[1:]:
+        words[y] = words.get(y, name)
+        y += 1
 
-    while x in range(len(words1.items())):
-        for order, word in sorted(words1.items()):
-            if word[0] == words_final[x][-1]:
+    marker = False
+    while marker is False:
+        for order, word in sorted(words.items()):
+            if word[0] == words_final[-1][-1]:
                 words_final.append(word)
-                del words1[order]
-                x += 1
+                del words[order]
+                marker = False
+                break
             else:
-                False
-
+                marker = True
+          
     return words_final
-    
+
 
 #####################################################################
 # You can ignore everything below this.
